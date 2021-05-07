@@ -19,6 +19,8 @@ general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'bold')
 general_entry_bg = '#0DC5B5'
 general_entry_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
 
+customers_window.configure(bg = 'black')
+
 ##############################################
 ############## New Customers #################
 ##############################################
@@ -26,7 +28,7 @@ general_entry_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
 # Create a Frame for Widgets regarding New Customers.
 new_customers_frame = tk.Frame(customers_window)
 # Position Frame onto Screen.
-new_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10)
+new_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
 
 # Create the Table to Contain Customer Information.
 db.create_table_customers()
@@ -49,15 +51,15 @@ email_address_label = tk.Label(new_customers_frame, text = 'Email Address : ',
 email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
 
 # Create Entry Widgets for New Customers.
-first_name = tk.Entry(new_customers_frame, width = 30, bg = general_entry_bg, fg = 'black', 
+first_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
     font = general_entry_font, borderwidth = 2)
 first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
 
-last_name = tk.Entry(new_customers_frame, width = 30, bg = general_entry_bg, fg = 'black', 
+last_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
     font = general_entry_font, borderwidth = 2)
 last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
 
-email_address = tk.Entry(new_customers_frame, width = 30, bg = general_entry_bg, fg = 'black', 
+email_address = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
     font = general_entry_font, borderwidth = 2)
 email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
 
@@ -82,7 +84,7 @@ addCustomerButton.grid(row = 4, column = 2, padx = 10, pady = 10)
 # Create a Frame for Access and Delete Record Functions.
 query_delete_frame = tk.Frame(customers_window)
 # Position Frame onto Screen.
-query_delete_frame.grid(row = 1, column = 0, padx = 10, pady = 10)
+query_delete_frame.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
 
 def show_customer_records () :
     column_to_organize = str(order_information.get())
@@ -97,7 +99,7 @@ order_information_label = tk.Label(query_delete_frame, text = 'Order By : ', bg 
 order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
 
 # Create Entry Widget for Order Information.
-order_information = tk.Entry(query_delete_frame, width = 30, bg = general_entry_bg, fg = 'black', 
+order_information = tk.Entry(query_delete_frame, bg = general_entry_bg, fg = 'black', 
     font = general_entry_font, borderwidth = 2)
 order_information.grid(row = 0, column = 1, padx = (0, 5), pady = 5)
 order_information.insert(0, 'Column Name')
@@ -113,7 +115,7 @@ id_box_label = tk.Label(query_delete_frame, text = 'Key ID : ', bg = general_lab
 id_box_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
 # Create Entry Widget for ID.
-id_box = tk.Entry(query_delete_frame, width = 30, bg = general_entry_bg, fg = 'black', 
+id_box = tk.Entry(query_delete_frame, bg = general_entry_bg, fg = 'black', 
     font = general_entry_font, borderwidth = 2)
 id_box.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
 id_box.insert(0, 'Enter Key ID to Change/Delete')
@@ -134,50 +136,55 @@ def open_customer_edit_window() :
     edit_window.title('New Information')
     edit_window.iconbitmap('Images/Icons/Database_Icon.ico')
 
+    edit_window.configure(bg = 'black')
+
+    # Create a Frame for Widgets regarding New Customers.
+    edit_customers_frame = tk.Frame(edit_window)
+    # Position Frame onto Screen.
+    edit_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
+
     id_to_change = id_box.get()
 
     customer_to_modify = db.show_record_specific_customer(id_to_change)
 
-    print(customer_to_modify)
-
     # Create Entry Field Labels for New Customer.
-    edit_customer_label = tk.Label(edit_window, text = 'New Customer Information', 
+    edit_customer_label = tk.Label(edit_customers_frame, text = 'New Customer Information', 
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_customer_label.grid(row = 0, column = 0, padx = 5, pady = 5)
 
-    edit_first_name_label = tk.Label(edit_window, text = 'First Name : ',
+    edit_first_name_label = tk.Label(edit_customers_frame, text = 'First Name : ',
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
-    edit_last_name_label = tk.Label(edit_window, text = 'Last Name : ',         
+    edit_last_name_label = tk.Label(edit_customers_frame, text = 'Last Name : ',         
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5)
 
-    edit_email_address_label = tk.Label(edit_window, text = 'Email Address : ', 
+    edit_email_address_label = tk.Label(edit_customers_frame, text = 'Email Address : ', 
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
 
     # Create Entry Widgets for New Customers.
     global edit_first_name
-    edit_first_name = tk.Entry(edit_window, width = 30, bg = general_entry_bg, 
+    edit_first_name = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
     edit_first_name.insert(0, customer_to_modify[0])
 
     global edit_last_name
-    edit_last_name = tk.Entry(edit_window, width = 30, bg = general_entry_bg, 
+    edit_last_name = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
     edit_last_name.insert(0, customer_to_modify[1])
 
     global edit_email_address
-    edit_email_address = tk.Entry(edit_window, width = 30, bg = general_entry_bg, 
+    edit_email_address = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
     edit_email_address.insert(0, customer_to_modify[2])
 
     # Create Submit Button.
-    submitButton = tk.Button(edit_window, text = 'Submit Information',
+    submitButton = tk.Button(edit_customers_frame, text = 'Submit Information',
         bg = button_bg, fg = 'white', font = button_font, borderwidth = 2, command = modify_customer)
     submitButton.grid(row = 4, column = 2, padx = 5, pady = 5)
 
