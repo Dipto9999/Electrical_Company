@@ -52,13 +52,13 @@ def show_records_all_customers(column_information) :
         ## print ('*Item Added*')
         ## print('Name Column Item: ' + str(name_column[item]))
         ## print('Email_Address Column Item: ' + str(email_address_column[item]))
-        ## print('Key ID Item: ' + str(key_column[item]) + '\n')
+        ## print('Primary Key Item: ' + str(key_column[item]) + '\n')
 
     ## Print all column lists to screen. - > Mainly for debugging purposes.
     ## print ('*Lists Complete*')
     ## print('Name Column: ' + str(name_column) + '\n')
     ## print('Email_Address Column: ' + str(email_address_column) + '\n')
-    ## print('Key ID: ' + str(key_column) + '\n\n')
+    ## print('Primary Key: ' + str(key_column) + '\n\n')
 
     # Convert the list to a series for each column.
     name_series = pd.DataFrame(name_column)
@@ -69,7 +69,7 @@ def show_records_all_customers(column_information) :
     ## print ('*Series Converted*')
     ## print('Name Series: ', str(name_series) + '\n')
     ## print('Email_Address Column: ' + str(email_address_series) + '\n')
-    ## print('Key ID: ' +str(key_series) + '\n\n')
+    ## print('Primary Key: ' +str(key_series) + '\n\n')
 
     # Combine the series into a new dataframe.
     combined_dataframe = pd.concat([name_series, email_address_series, key_series], axis = 1)
@@ -83,6 +83,46 @@ def show_records_all_customers(column_information) :
     conn.close()
 
     return combined_dataframe
+
+global key_list
+key_list = []
+# Function to remove list nestings. This is used to 
+# acquire the current primary keys in the table.
+def remove_nestings(nested_list) :
+    for item in nested_list :
+        if type(item) == list :
+            remove_nestings(item)
+        else :
+            key_list.append(item)
+
+# Query the database and return all primary keys in order.
+def show_primary_keys_all_customers() :
+    # Connect to database.
+    conn = sqlite3.connect('finances.db')
+    # Create a cursor.
+    cursor = conn.cursor()
+        
+    # Query the database.
+    cursor.execute(""" SELECT rowid FROM customers ORDER BY rowid""")
+
+    key_series = pd.DataFrame(cursor.fetchall())     
+    key_nested_list = key_series.values.tolist()
+
+    global key_list
+    key_list = []
+
+    remove_nestings(key_nested_list)
+    key_tuple = tuple(key_list)
+
+    ## Print primary keys to screen. - > Mainly for debugging purposes.
+    ## print('Primary Keys :')
+    ## print(key_tuple)
+    ## print('\n')
+
+    # Close our connection.
+    conn.close()
+
+    return key_tuple
 
 # Query the database and return a specific record.
 def show_record_specific_customer(key) :
@@ -200,6 +240,14 @@ def delete_record_customer(key) :
     conn.commit()
     conn.close()
 
+# Return the number of customers in the table.
+def number_of_customers() :
+    try :
+        customer_count = len(show_records_all_customers('Primary Key').index)
+        return customer_count
+    except Exception as NoCustomers :
+        return 0
+
 def test_database() :
     # Create the table.
     create_table_customers()
@@ -214,6 +262,10 @@ def test_database() :
     print('Last Name : ', muntakim_information[1])
     print('Email Address : ', muntakim_information[2] + '\n')
 
+    print('There is ' + str(number_of_customers()) + ' customer in the table.\n')
+    show_primary_keys_all_customers()
+
+
     # Add three customers to the table.
     add_records_customers(
         ['Mahir', 'Jim', 'Tunzilur', 'Merina'], 
@@ -222,8 +274,12 @@ def test_database() :
     )
 
     print('**Added 3 Customers**')
-    print('Current Customers in Table (Arranged by Key ID) :')
+    print('Current Customers in Table (Arranged by Primary Key) :')
     print(str(show_records_all_customers('Gibberish')) + '\n')
+
+    print('There are ' + str(number_of_customers()) + ' customers in the table.\n')
+    show_primary_keys_all_customers()
+
 
     print('Mahir Current Data :')
     mahir_information = show_record_specific_customer(2)
@@ -247,6 +303,10 @@ def test_database() :
     print('**Removed Jim Bob**')
     print('Current Customers in Table (Arranged by Email) :')
     print(str(show_records_all_customers('Email Address')) + '\n')
+
+    print('There are ' + str(number_of_customers()) + ' customers in the table.\n')
+    show_primary_keys_all_customers()
+
 
 ## Test the functionality of the Python script.
 ## test_database()

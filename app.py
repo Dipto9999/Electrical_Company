@@ -19,7 +19,7 @@ general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'bold')
 general_entry_bg = '#0DC5B5'
 general_entry_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
 
-customers_window.configure(bg = 'black')
+customers_window.config(bg = 'black')
 
 ##############################################
 ############## New Customers #################
@@ -28,7 +28,7 @@ customers_window.configure(bg = 'black')
 # Create a Frame for Widgets regarding New Customers.
 new_customers_frame = tk.Frame(customers_window)
 # Position Frame onto Screen.
-new_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
+new_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.N + tk.E + tk.S + tk.W)
 
 # Create the Table to Contain Customer Information.
 db.create_table_customers()
@@ -68,15 +68,6 @@ first_name.insert(0, 'First Name')
 last_name.insert(0, 'Last Name')
 email_address.insert(0, 'Email Address')
 
-def add_customer () :
-    new_customer = [first_name.get(), last_name.get(), email_address.get()]
-    db.add_records_customers(str(new_customer[0]), str(new_customer[1]), str(new_customer[2]))
-
-# Create Add Customer Button.
-addCustomerButton = tk.Button(new_customers_frame, text = 'Add Customer', bg = button_bg, 
-    fg = 'white', font = button_font, borderwidth = 2, command = add_customer)
-addCustomerButton.grid(row = 4, column = 2, padx = 10, pady = 10)
-
 ############################################################
 ################ Access and Delete Records ##################
 ############################################################
@@ -84,7 +75,7 @@ addCustomerButton.grid(row = 4, column = 2, padx = 10, pady = 10)
 # Create a Frame for Access and Delete Record Functions.
 query_delete_frame = tk.Frame(customers_window)
 # Position Frame onto Screen.
-query_delete_frame.grid(row = 1, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
+query_delete_frame.grid(row = 1, column = 0, padx = 10, pady = 10,  sticky = tk.N + tk.E + tk.S + tk.W)
 
 def show_customer_records () :
     column_to_organize = str(order_information.get())
@@ -98,11 +89,11 @@ order_information_label = tk.Label(query_delete_frame, text = 'Order By : ', bg 
     fg = 'Black', font = general_label_font, borderwidth = 2, anchor = tk.E)
 order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
 
-# Create Entry Widget for Order Information.
-order_information = tk.Entry(query_delete_frame, bg = general_entry_bg, fg = 'black', 
-    font = general_entry_font, borderwidth = 2)
+# Create Spinbox Widget for Order Information.
+order_information = tk.Spinbox(query_delete_frame, 
+    values = ('Key ID', 'First Name', 'Last Name', 'Email Address'),
+    bg = general_entry_bg, fg = 'black', font = general_entry_font, borderwidth = 2)
 order_information.grid(row = 0, column = 1, padx = (0, 5), pady = 5)
-order_information.insert(0, 'Column Name')
 
 # Create Query Button.
 queryButton = tk.Button(query_delete_frame, text = 'Query', bg = button_bg, fg = 'white', 
@@ -114,15 +105,33 @@ id_box_label = tk.Label(query_delete_frame, text = 'Key ID : ', bg = general_lab
     font = general_label_font, borderwidth = 2, anchor = tk.E)
 id_box_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
-# Create Entry Widget for ID.
-id_box = tk.Entry(query_delete_frame, bg = general_entry_bg, fg = 'black', 
-    font = general_entry_font, borderwidth = 2)
+if (db.number_of_customers() > 0) :
+    key_ids_in_table = db.show_primary_keys_all_customers()
+else :
+    key_ids_in_table = ('', '')
+
+# Create Spinbox Widget for ID.
+id_box = tk.Spinbox(query_delete_frame, values = key_ids_in_table,
+    bg = general_entry_bg, fg = 'black', font = general_entry_font, borderwidth = 2)
 id_box.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
-id_box.insert(0, 'Enter Key ID to Change/Delete')
+
+def add_customer () :
+    new_customer = [first_name.get(), last_name.get(), email_address.get()]
+    db.add_records_customers(str(new_customer[0]), str(new_customer[1]), str(new_customer[2]))
+
+    update_relevant_widgets()
+
+# Create Add Customer Button (In New Customers Frame, But Modifies ID Spinbox).
+addCustomerButton = tk.Button(new_customers_frame, text = 'Add Customer', bg = button_bg, 
+    fg = 'white', font = button_font, borderwidth = 2, command = add_customer)
+addCustomerButton.grid(row = 4, column = 2, padx = 10, pady = 10)
 
 def delete_customer() :
-    id_to_delete = id_box.get()
+    id_to_delete = int(id_box.get())
+    
     db.delete_record_customer(id_to_delete)
+
+    update_relevant_widgets()
 
 # Create Delete Record Button.
 deleteRecordButton = tk.Button(query_delete_frame, text = 'Delete Customer', bg = button_bg, fg = 'white', 
@@ -136,15 +145,14 @@ def open_customer_edit_window() :
     edit_window.title('New Information')
     edit_window.iconbitmap('Images/Icons/Database_Icon.ico')
 
-    edit_window.configure(bg = 'black')
+    edit_window.config(bg = 'black')
 
     # Create a Frame for Widgets regarding New Customers.
     edit_customers_frame = tk.Frame(edit_window)
     # Position Frame onto Screen.
-    edit_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.E + tk.W)
+    edit_customers_frame.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = tk.N + tk.E + tk.S + tk.W)
 
-    id_to_change = id_box.get()
-
+    id_to_change = int(id_box.get())
     customer_to_modify = db.show_record_specific_customer(id_to_change)
 
     # Create Entry Field Labels for New Customer.
@@ -189,7 +197,7 @@ def open_customer_edit_window() :
     submitButton.grid(row = 4, column = 2, padx = 5, pady = 5)
 
 def modify_customer () :
-    id_to_change = id_box.get()
+    id_to_change = int(id_box.get())
     modified_first_name = edit_first_name.get()
     modified_last_name = edit_last_name.get()
     modified_email_address = edit_email_address.get()
@@ -203,6 +211,37 @@ def modify_customer () :
 modifyRecordButton = tk.Button(query_delete_frame, text = 'Change Information', 
     bg = button_bg, fg = 'white', font = button_font, borderwidth = 2, command = open_customer_edit_window)
 modifyRecordButton.grid(row = 2, column = 1, padx = 10, pady = 10)
+
+# Custom Modification of Widgets Depending on Number of Records.
+def update_relevant_widgets () :
+    if (db.number_of_customers() == 0) :
+        # Disable Buttons that Query or Change the database.
+        queryButton.config(state = 'disabled')
+        deleteRecordButton.config(state = 'disabled')
+        modifyRecordButton.config(state = 'disabled')
+
+        # Update ID Spinbox Widget.
+        key_ids_in_table = ('', '')
+
+    elif (db.number_of_customers() >= 1) :
+        # Enable Buttons that Query or Change the database.
+        queryButton.config(state = 'normal')
+        deleteRecordButton.config(state = 'normal')
+        modifyRecordButton.config(state = 'normal')
+
+        # Update ID Spinbox Widget.
+        key_ids_in_table = db.show_primary_keys_all_customers()
+        
+        ## Print All Current Key Ids in Table -> Mainly for Debugging Purposes.
+        ## print('Key IDS in Table : ')
+        ## print(key_ids_in_table)
+        ## print('\n')
+
+    id_box.config(values = key_ids_in_table)
+
+update_relevant_widgets()
+
+
 
 # Infinite Loop -> Interrupted by Keyboard or Mouse.
 customers_window.mainloop()
