@@ -38,7 +38,7 @@ new_customers_label = tk.Label(new_customers_frame, text = 'New Customer Informa
     bg = general_label_bg, fg = 'Black', font = general_label_font, borderwidth = 2, anchor = tk.E)
 new_customers_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
 
-first_name_label = tk.Label(new_customers_frame, text = 'First Name : ', 
+first_name_label = tk.Label(new_customers_frame, text = 'First Name : ',
     bg = general_label_bg, fg = 'Black', font = general_label_font, borderwidth = 2, anchor = tk.E)
 first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
@@ -46,20 +46,20 @@ last_name_label = tk.Label(new_customers_frame, text = 'Last Name : ',
     bg = general_label_bg, fg = 'Black', font = general_label_font, borderwidth = 2, anchor = tk.E)
 last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5)
 
-email_address_label = tk.Label(new_customers_frame, text = 'Email Address : ', 
+email_address_label = tk.Label(new_customers_frame, text = 'Email Address : ',
     bg = general_label_bg, fg = 'Black', font = general_label_font, borderwidth = 2,  anchor = tk.E)
 email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
 
 # Create Entry Widgets for New Customers.
-first_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
+first_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black',
     font = general_entry_font, borderwidth = 2)
 first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
 
-last_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
+last_name = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black',
     font = general_entry_font, borderwidth = 2)
 last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
 
-email_address = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black', 
+email_address = tk.Entry(new_customers_frame, bg = general_entry_bg, fg = 'black',
     font = general_entry_font, borderwidth = 2)
 email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
 
@@ -85,23 +85,23 @@ def show_customer_records () :
     messagebox.showinfo('Customer Records', str(customer_records))
 
 # Create Label for Order Information.
-order_information_label = tk.Label(query_delete_frame, text = 'Order By : ', bg = general_label_bg, 
+order_information_label = tk.Label(query_delete_frame, text = 'Order By : ', bg = general_label_bg,
     fg = 'Black', font = general_label_font, borderwidth = 2, anchor = tk.E)
 order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
 
 # Create Spinbox Widget for Order Information.
-order_information = tk.Spinbox(query_delete_frame, 
+order_information = tk.Spinbox(query_delete_frame,
     values = ('Key ID', 'First Name', 'Last Name', 'Email Address'),
     bg = general_entry_bg, fg = 'black', font = general_entry_font, borderwidth = 2)
 order_information.grid(row = 0, column = 1, padx = (0, 5), pady = 5)
 
 # Create Query Button.
-queryButton = tk.Button(query_delete_frame, text = 'Query', bg = button_bg, fg = 'white', 
+queryButton = tk.Button(query_delete_frame, text = 'Query', bg = button_bg, fg = 'white',
     font = button_font, borderwidth = 2, command = show_customer_records)
 queryButton.grid(row = 0, column = 2, padx = 5, pady = 5)
 
 # Create Label for ID.
-id_box_label = tk.Label(query_delete_frame, text = 'Key ID : ', bg = general_label_bg, fg = 'black', 
+id_box_label = tk.Label(query_delete_frame, text = 'Key ID : ', bg = general_label_bg, fg = 'black',
     font = general_label_font, borderwidth = 2, anchor = tk.E)
 id_box_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
@@ -122,19 +122,19 @@ def add_customer () :
     update_relevant_widgets()
 
 # Create Add Customer Button (In New Customers Frame, But Modifies ID Spinbox).
-addCustomerButton = tk.Button(new_customers_frame, text = 'Add Customer', bg = button_bg, 
+addCustomerButton = tk.Button(new_customers_frame, text = 'Add Customer', bg = button_bg,
     fg = 'white', font = button_font, borderwidth = 2, command = add_customer)
 addCustomerButton.grid(row = 4, column = 2, padx = 10, pady = 10)
 
 def delete_customer() :
     id_to_delete = int(id_box.get())
-    
+
     db.delete_record_customer(id_to_delete)
 
     update_relevant_widgets()
 
 # Create Delete Record Button.
-deleteRecordButton = tk.Button(query_delete_frame, text = 'Delete Customer', bg = button_bg, fg = 'white', 
+deleteRecordButton = tk.Button(query_delete_frame, text = 'Delete Customer', bg = button_bg, fg = 'white',
     font = button_font, borderwidth = 2, command = delete_customer)
 deleteRecordButton.grid(row = 2, column = 0, padx = 10, pady = 10)
 
@@ -156,7 +156,7 @@ def open_customer_edit_window() :
     customer_to_modify = db.show_record_specific_customer(id_to_change)
 
     # Create Entry Field Labels for New Customer.
-    edit_customer_label = tk.Label(edit_customers_frame, text = 'New Customer Information', 
+    edit_customer_label = tk.Label(edit_customers_frame, text = 'New Customer Information',
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_customer_label.grid(row = 0, column = 0, padx = 5, pady = 5)
 
@@ -164,29 +164,29 @@ def open_customer_edit_window() :
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5)
 
-    edit_last_name_label = tk.Label(edit_customers_frame, text = 'Last Name : ',         
+    edit_last_name_label = tk.Label(edit_customers_frame, text = 'Last Name : ',
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5)
 
-    edit_email_address_label = tk.Label(edit_customers_frame, text = 'Email Address : ', 
+    edit_email_address_label = tk.Label(edit_customers_frame, text = 'Email Address : ',
         bg = general_label_bg, fg = 'black', font = general_label_font, borderwidth = 2, anchor = tk.E)
     edit_email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
 
     # Create Entry Widgets for New Customers.
     global edit_first_name
-    edit_first_name = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
+    edit_first_name = tk.Entry(edit_customers_frame, bg = general_entry_bg,
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
     edit_first_name.insert(0, customer_to_modify[0])
 
     global edit_last_name
-    edit_last_name = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
+    edit_last_name = tk.Entry(edit_customers_frame, bg = general_entry_bg,
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
     edit_last_name.insert(0, customer_to_modify[1])
 
     global edit_email_address
-    edit_email_address = tk.Entry(edit_customers_frame, bg = general_entry_bg, 
+    edit_email_address = tk.Entry(edit_customers_frame, bg = general_entry_bg,
         fg = 'black', font = general_entry_font, borderwidth = 2)
     edit_email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
     edit_email_address.insert(0, customer_to_modify[2])
@@ -201,14 +201,14 @@ def modify_customer () :
     modified_first_name = edit_first_name.get()
     modified_last_name = edit_last_name.get()
     modified_email_address = edit_email_address.get()
-    db.change_record_specific_customer(id_to_change, modified_first_name, 
+    db.change_record_specific_customer(id_to_change, modified_first_name,
         modified_last_name, modified_email_address)
 
     # Close the Edit Window.
     edit_window.destroy()
 
 # Create Modify Record Button.
-modifyRecordButton = tk.Button(query_delete_frame, text = 'Change Information', 
+modifyRecordButton = tk.Button(query_delete_frame, text = 'Change Information',
     bg = button_bg, fg = 'white', font = button_font, borderwidth = 2, command = open_customer_edit_window)
 modifyRecordButton.grid(row = 2, column = 1, padx = 10, pady = 10)
 
@@ -231,7 +231,7 @@ def update_relevant_widgets () :
 
         # Update ID Spinbox Widget.
         key_ids_in_table = db.show_primary_keys_all_customers()
-        
+
         ## Print All Current Key Ids in Table -> Mainly for Debugging Purposes.
         ## print('Key IDS in Table : ')
         ## print(key_ids_in_table)

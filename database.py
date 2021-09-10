@@ -26,7 +26,7 @@ def show_records_all_customers(column_information) :
     conn = sqlite3.connect('finances.db')
     # Create a cursor.
     cursor = conn.cursor()
-        
+
     # Query the database.
     if (column_information == 'First Name') :
         cursor.execute(""" SELECT *, rowid FROM customers ORDER BY first_name""")
@@ -45,7 +45,7 @@ def show_records_all_customers(column_information) :
 
     for item in range(len(items)) :
         name_column.append(items[item][0] + ' ' + items[item][1])
-        email_address_column.append(items[item][2]) 
+        email_address_column.append(items[item][2])
         key_column.append(str(items[item][3]))
 
         ## Print item appended to column lists to screen. - > Mainly for debugging purposes.
@@ -84,9 +84,8 @@ def show_records_all_customers(column_information) :
 
     return combined_dataframe
 
-global key_list
 key_list = []
-# Function to remove list nestings. This is used to 
+# Function to remove list nestings. This is used to
 # acquire the current primary keys in the table.
 def remove_nestings(nested_list) :
     for item in nested_list :
@@ -101,13 +100,14 @@ def show_primary_keys_all_customers() :
     conn = sqlite3.connect('finances.db')
     # Create a cursor.
     cursor = conn.cursor()
-        
+
     # Query the database.
     cursor.execute(""" SELECT rowid FROM customers ORDER BY rowid""")
 
-    key_series = pd.DataFrame(cursor.fetchall())     
+    key_series = pd.DataFrame(cursor.fetchall())
     key_nested_list = key_series.values.tolist()
 
+    # Reinitialize the list of primary keys.
     global key_list
     key_list = []
 
@@ -133,7 +133,7 @@ def show_record_specific_customer(key) :
 
     # Query the database.
     cursor.execute(""" SELECT * FROM customers WHERE rowid = (?) """, str(key))
-    customer_found = cursor.fetchall() 
+    customer_found = cursor.fetchall()
 
     ## Print record to screen. - > Mainly for debugging purposes.
     ## print(customer_found)
@@ -159,7 +159,7 @@ def add_records_customers(new_first_name, new_last_name, new_email_address) :
 
     try :
         # Insert a single record into database.
-        cursor.execute(""" INSERT INTO customers VALUES (?, ?, ?) """, 
+        cursor.execute(""" INSERT INTO customers VALUES (?, ?, ?) """,
             (new_first_name, new_last_name, new_email_address)
         )
 
@@ -177,7 +177,7 @@ def add_records_customers(new_first_name, new_last_name, new_email_address) :
         for i in range(len(new_first_name)) :
             new_customers.append((new_first_name[i], new_last_name[i], new_email_address[i]))
         ## Print record just added to screen. - > Mainly for debugging purposes.
-        ## print('New Customer # ' + str(new_customer + 1) :') 
+        ## print('New Customer # ' + str(new_customer + 1) :')
         ## print('First Name : ' + str(new_customers[new_customer][0])')
         ## print('Last Name : ' + str(new_customers[new_customer][1])')
         ## print('Email Address : ' + str(new_customers[new_customer][2]) + '\n')
@@ -187,16 +187,16 @@ def add_records_customers(new_first_name, new_last_name, new_email_address) :
         ## print(str(new_customers) + '\n')
 
         # Insert many records into database.
-        cursor.executemany(""" INSERT INTO customers VALUES (?, ?, ?) """, 
+        cursor.executemany(""" INSERT INTO customers VALUES (?, ?, ?) """,
             (new_customers)
-        ) 
+        )
 
         ## Print records added to screen. - > Mainly for debugging purposes.
         ## print(str(len(new_customers)) + 'Customers Added :')
         ## print(new_customers + '\n')
 
         # Commit our command.
-        conn.commit()  
+        conn.commit()
     finally :
         # Close our connection.
         conn.close()
@@ -213,8 +213,8 @@ def change_record_specific_customer(key, first_name_new, last_name_new, email_ad
             first_name = :first_name,
             last_name = :last_name,
             email_address = :email_address
-            WHERE rowid = :key """, 
-            
+            WHERE rowid = :key """,
+
             {
                 'first_name' : first_name_new,
                 'last_name' : last_name_new,
@@ -251,7 +251,7 @@ def number_of_customers() :
 def test_database() :
     # Create the table.
     create_table_customers()
-    
+
     # Add a customer to the table.
     add_records_customers('Muntakim', 'Rahman', 'muntakim.rahman@gmail.com')
 
@@ -263,14 +263,14 @@ def test_database() :
     print('Email Address : ', muntakim_information[2] + '\n')
 
     print('There is ' + str(number_of_customers()) + ' customer in the table.\n')
-    show_primary_keys_all_customers()
+    print('Keys in Order : ', show_primary_keys_all_customers())
 
 
     # Add three customers to the table.
     add_records_customers(
-        ['Mahir', 'Jim', 'Tunzilur', 'Merina'], 
-        ['Tanzil', 'Bob', 'Rahman', 'Sultana'],
-        ['mahirtanzil@gmail.com', 'jimmy@gmail.com', 'tunzilur@gmail.com', 'merina_70@yahoo.com']
+        ['Janice', 'Jim', 'Apple', 'Happy'],
+        ['Morison', 'Johns', 'Bee', 'Wilson'],
+        ['Janice@gmail.com', 'jimmy@gmail.com', 'honeybee@gmail.com', 'hw@yahoo.com']
     )
 
     print('**Added 3 Customers**')
@@ -278,35 +278,33 @@ def test_database() :
     print(str(show_records_all_customers('Gibberish')) + '\n')
 
     print('There are ' + str(number_of_customers()) + ' customers in the table.\n')
-    show_primary_keys_all_customers()
+    print('Keys in Order : ', show_primary_keys_all_customers())
 
+    print('JJ Current Data :')
+    jj_information = show_record_specific_customer(3)
+    print('First Name : ', jj_information[0])
+    print('Last Name : ', jj_information[1])
+    print('Email Address : ', jj_information[2] + '\n')
 
-    print('Mahir Current Data :')
-    mahir_information = show_record_specific_customer(2)
-    print('First Name : ', mahir_information[0])
-    print('Last Name : ', mahir_information[1])
-    print('Email Address : ', mahir_information[2] + '\n')
+    # Modify JJ's data in table.
+    change_record_specific_customer(3, 'Jimminy', 'John', 'JJ@gmail.com')
 
-    # Modify Mahir's data in table.
-    change_record_specific_customer(2, 'Mahir Tanzil', 'Rahman', 'mahir199.tanzil@gmail.com')
-    
-    print('**Changed Mahir Name and Email Address**')
-    print('Mahir New Data :')
-    mahir_first_name, mahir_last_name, mahir_email_address = (show_record_specific_customer(2))
-    print('First Name : ', mahir_first_name)
-    print('Last Name : ', mahir_last_name)
-    print('Email Address : ', mahir_email_address + '\n')
+    print('**Changed JJ Name and Email Address**')
+    print('JJ New Data :')
+    jj_first_name, jj_last_name, jj_email_address = (show_record_specific_customer(3))
+    print('First Name : ', jj_first_name)
+    print('Last Name : ', jj_last_name)
+    print('Email Address : ', jj_email_address + '\n')
 
-    # Delete Jim Bob from the table.
+    # Delete JJ from the table.
     delete_record_customer(3)
 
-    print('**Removed Jim Bob**')
+    print('**Removed JJ**')
     print('Current Customers in Table (Arranged by Email) :')
     print(str(show_records_all_customers('Email Address')) + '\n')
 
     print('There are ' + str(number_of_customers()) + ' customers in the table.\n')
-    show_primary_keys_all_customers()
-
+    print('Keys in Order : ', show_primary_keys_all_customers())
 
 ## Test the functionality of the Python script.
-## test_database()
+test_database()
