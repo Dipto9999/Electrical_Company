@@ -307,4 +307,4 @@ def test_database() :
     print('Keys in Order : ', show_primary_keys_all_customers())
 
 ## Test the functionality of the Python script.
-test_database()
+## test_database()
