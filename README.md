@@ -22,7 +22,7 @@ This can be used to add, delete, or modify customers as shown below.
 
 We can also query the database and view information for all individuals in some specified order.
 
-<p align="center"><img src="Images/Query_DB.JPG" height="40%" width="40%" title="All Customer Information" ></p>
+<p align="center"><img src="Images/Demonstrations/Query_DB.JPG" height="40%" width="40%" title="All Customer Information" ></p>
 
 ### Further Exploration
 
