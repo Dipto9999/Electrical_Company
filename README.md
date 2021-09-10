@@ -2,17 +2,17 @@
 
 ## Contents
 * [Overview](#Overview)
-* [App Modification](#App-Modifications)
-    * [GUI](#Graphical-User-Interface)
+* [App Modifications](#App-Modifications)
+* [Tkinter GUI](#Tkinter-GUI)
     * [Further Exploration](#Further-Exploration)
 
 ## Overview
 
 Create <b>Desktop Application</b> driven by <b>Python</b> to collect user data and store in local database.</br>
 
-## App Modification
+## App Modifications
 
-### Graphical User Interface
+### Tkinter GUI
 
 We used the <b>Tkinter</b> standard interface to create the <b>GUI</b> for the user to interact with when running the application.
 
