@@ -1,6 +1,10 @@
-class Company :
-    def __init__(self, owners) :
-        pass
+class Finances :
+    def __init__(self, name) :
+        self.name = name
 
-    def monthly_income() :
+    def receive_payment(self) :
+        pass
+    def make_payment(self) :
+        pass
+    def get_balance(self) :
         pass
