@@ -27,3 +27,23 @@ We can also query the database and view information for all individuals in some 
 ### Further Exploration
 
 We are considering implementing <b>Object Oriented Programming (OOP)</b> principles to add employee functionality to the company, where individuals are provided salaries, hired and fired on demand. This will allow us to simulate an income flow for the **Electrical Company**.
+
+### Tasks
+
+-> GUI
+    - Style Treeview to Display Customers Data from SQLite
+    - Add OOP to GUI
+    - Menu to Access Customers, Employees, Finances
+        - Finances Should Have Data Graphics (Use Matplotlib)
+
+-> Company :
+    - Calculate Income From All Customers
+        - Basic (Multiplication Factor of 1)
+        - Premium (Multiplication Factor of 1.5)
+    - Calculate Monthly Wage to Pay All Employees
+        - Fixed Wages Are Acquired From Database
+        - Additional Wages Calculated As :
+            - Salespeople Add New Customers (Parameter in Method), Get Commision
+            - Corporate received $100 for every $1000 Net Income
+            - Technical Workers Get a Bonus Every Quarter (4 Months) Based on Position
+                - Specific to Each Employee and Position
