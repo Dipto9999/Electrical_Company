@@ -33,8 +33,7 @@ We are considering implementing <b>Object Oriented Programming (OOP)</b> princip
 -> GUI
     - Style Treeview to Display Customers Data from SQLite
     - Add OOP to GUI
-    - Menu to Access Customers, Employees, Finances
-        - Finances Should Have Data Graphics (Use Matplotlib)
+    - Note : Finances Should Have Data Graphics (Use Matplotlib)
 
 -> Company :
     - Calculate Income From All Customers
