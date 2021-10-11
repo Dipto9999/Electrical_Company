@@ -19,21 +19,9 @@ SUBSCRIPTION_PLAN = 4
 
 PRIMARY_KEY = 5
 
-key_list = []
-
 ########################################
 ############## Functions ###############
 ########################################
-
-# Function to Remove List Nestings. This is Used to
-# Acquire the Current Primary Keys in the Table.
-def remove_nestings(nested_list) :
-
-    for item in nested_list :
-        if type(item) == list :
-            remove_nestings(item)
-        else :
-            key_list.append(item)
 
 # Create a Table For the Customers.
 def create_table() :
@@ -61,7 +49,6 @@ def create_table() :
 
 # Query the Customers Table and Return a Specific Record.
 def show_single_record(key) :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
@@ -79,7 +66,6 @@ def show_single_record(key) :
 
 # Query the Customers Table and Return All Records Ordered by Specified Column.
 def show_all_records(column_information) :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
@@ -157,7 +143,6 @@ def show_all_records(column_information) :
 
 # Query the Customers Table and Return All Primary Keys In Order.
 def show_all_primary_keys() :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
@@ -167,23 +152,19 @@ def show_all_primary_keys() :
     cursor.execute(""" SELECT rowid FROM customers ORDER BY rowid""")
 
     key_series = pd.DataFrame(cursor.fetchall())
-    key_nested_list = key_series.values.tolist()
 
-    # Reinitialize the List of Primary Keys.
-    global key_list
     key_list = []
-
-    remove_nestings(key_nested_list)
-    key_tuple = tuple(key_list)
+    for nested_list in key_series.to_numpy().tolist():
+        for key in nested_list :
+            key_list.append(key)
 
     # Close our Connection.
     conn.close()
 
-    return key_tuple
+    return key_list
 
 # Add New Records To The Customers Table.
 def add_records(first_name_new, last_name_new, email_address_new, phone_number_new, subscription_plan_new) :
-
     # Connect to database.
     conn = sqlite3.connect('company.db')
     # Create a cursor.
@@ -228,7 +209,6 @@ def add_records(first_name_new, last_name_new, email_address_new, phone_number_n
 
 # Change the Information Regarding a Specific Customer.
 def change_single_record(key, first_name_new, last_name_new, email_address_new, phone_number_new, subscription_plan_new) :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
@@ -263,13 +243,12 @@ def change_single_record(key, first_name_new, last_name_new, email_address_new, 
 
 # Delete a Record From The Customers Table.
 def delete_record(key) :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
     cursor = conn.cursor()
 
-    cursor.execute(""" DELETE from customers WHERE rowid = (?) """, str(key))
+    cursor.execute(""" DELETE from customers WHERE rowid = (?) """, [str(key)])
 
     # Commit Our Command and Close Our Connection.
     conn.commit()
@@ -283,7 +262,6 @@ def number_of_records() :
         return 0
 
 def print_record(key) :
-
     customer_information = show_single_record(key)
 
     print('First Name : ', customer_information[FIRST_NAME])
@@ -295,7 +273,6 @@ def print_record(key) :
     print('Subscription Plan : ', customer_information[SUBSCRIPTION_PLAN] + '\n')
 
 def test_script() :
-
     # Create the Table.
     create_table()
 
