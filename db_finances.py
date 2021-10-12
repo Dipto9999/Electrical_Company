@@ -22,25 +22,12 @@ NUMBER_OF_DEPARTMENTS = 7
 
 PRIMARY_KEY = 8
 
-key_list = []
-
 ########################################
 ############## Functions ###############
 ########################################
 
-# Function to Remove List Nestings. This is Used to
-# Acquire the Current Primary Keys in the Table.
-def remove_nestings(nested_list) :
-
-    for item in nested_list :
-        if type(item) == list :
-            remove_nestings(item)
-        else :
-            key_list.append(item)
-
 # Create a Table For the Finances.
 def create_table() :
-
     # Connect to Database.
     conn = sqlite3.connect('company.db')
     # Create a Cursor.
@@ -208,19 +195,16 @@ def show_all_primary_keys() :
     cursor.execute(""" SELECT rowid FROM finances ORDER BY rowid""")
 
     key_series = pd.DataFrame(cursor.fetchall())
-    key_nested_list = key_series.values.tolist()
 
-    # Reinitialize the List of Primary Keys.
-    global key_list
     key_list = []
-
-    remove_nestings(key_nested_list)
-    key_tuple = tuple(key_list)
+    for nested_list in key_series.to_numpy().tolist():
+        for key in nested_list :
+            key_list.append(key)
 
     # Close our Connection.
     conn.close()
 
-    return key_tuple
+    return key_list
 
 # Add New Records To The Finances Table.
 def add_records(date_new,
@@ -320,7 +304,7 @@ def test_script() :
 
     print(str(show_all_records('Date')) + '\n')
 
-    print('**Added 1 Record**')
+    print('**Added 1 Record**\n')
     print_record(key = 1)
 
     print('There is ' + str(number_of_records()) + ' record in the table.\n')
@@ -338,7 +322,7 @@ def test_script() :
         [5, 4, 5, 5]  # Number of Departments
     )
 
-    print('**Added 1 New Record**')
+    print('**Added 1 New Record**\n')
     print('Current Records in Table (Arranged by Monthly Net Income) :')
     print(str(show_all_records('Monthly Net Income')) + '\n')
 
@@ -359,7 +343,7 @@ def test_script() :
         4 # Number of Departments
     )
 
-    print('**Added 1 New Record**')
+    print('**Added 1 New Record**\n')
     print('Current Records in Table (Arranged by Number of Customers) :')
     print(str(show_all_records('Number of Customers')) + '\n')
 

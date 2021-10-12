@@ -26,23 +26,44 @@ We can also query the database and view information for all individuals in some 
 
 ### Further Exploration
 
-We are considering implementing <b>Object Oriented Programming (OOP)</b> principles to add employee functionality to the company, where individuals are provided salaries, hired and fired on demand. This will allow us to simulate an income flow for the **Electrical Company**.
+We are considering developing a system to simulate an income flow for the **Electrical Company**. This will involve time based finance
+table updates.
 
 ### Tasks
 
--> GUI
-    - Style Treeview to Display Customers Data from SQLite
-    - Add OOP to GUI
-    - Note : Finances Should Have Data Graphics (Use Matplotlib)
-
--> Company :
-    - Calculate Income From All Customers
-        - Basic (Multiplication Factor of 1)
-        - Premium (Multiplication Factor of 1.5)
-    - Calculate Monthly Wage to Pay All Employees
-        - Fixed Wages Are Acquired From Database
-        - Additional Wages Calculated As :
-            - Salespeople Add New Customers (Parameter in Method), Get Commision
-            - Corporate received $100 for every $1000 Net Income
-            - Technical Workers Get a Bonus Every Quarter (4 Months) Based on Position
-                - Specific to Each Employee and Position
+<ul>
+    <li>
+        <b>GUI</b>
+        <ul>
+            <li>
+                FinancesPage Should Have Data Graphics (Use Matplotlib).
+            </li>
+        </ul>
+    </li>
+    <li>
+        <b>Time Simulation</b>
+        <ul>
+            <li>
+                Calculate Income From All Customers.
+                <ul>
+                    <li>Basic (Multiplication Factor of 1)</li>
+                    <li>Premium (Multiplication Factor of 1.5)</li>
+                </ul>
+            </li>
+            <li>
+                Calculate Monthly Wage to Pay Employees.
+                <ul>
+                    <li>Fixed Wages Are Acquired From DB Table.</li>
+                    <li>
+                        Additional Wages Calculated As:
+                        <ul>
+                            <li>Sales Department Adds New Customers and Receive Commision</li>
+                            <li>Corporate Department Employees receive $100 for every $1000 Net Income.</li>
+                            <li>Technical Department Workers Get a Bonus Every Quarter (4 Months) Based on Job Title.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

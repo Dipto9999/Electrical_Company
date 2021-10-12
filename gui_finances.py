@@ -3,7 +3,7 @@ from tkinter import ttk
 
 import db_finances as db
 
-class FinancesHomePage(tk.Frame) :
+class FinancesPage(tk.Frame) :
 
     def __init__(self, frame, master) :
         # Initialize Frame.

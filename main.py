@@ -1,15 +1,25 @@
+########################################
+############## Modules #################
+########################################
+
 import tkinter as tk
 
-from pages_finances import FinancesHomePage
-from pages_employees import EmployeesHomePage
-from pages_customers import CustomersHomePage
+from gui_finances import FinancesPage
+from gui_employees import EmployeesHomePage
+from gui_customers import CustomersHomePage
 
-STARTING_PAGE = 'FinancesHomePage'
+########################################
+############## Constants ###############
+########################################
+
+STARTING_PAGE = 'FinancesPage'
+
+######################################
+############## Classes ###############
+######################################
 
 class GUI(tk.Tk) :
-
     def __init__(self) :
-
         # Can Initialize GUI Implicitly.
         super().__init__()
 
@@ -44,7 +54,7 @@ class GUI(tk.Tk) :
 
         # Initialize Dictionaries With Page Classes.
         self.pages = {}
-        for Page in (FinancesHomePage, CustomersHomePage, EmployeesHomePage) :
+        for Page in (FinancesPage, CustomersHomePage, EmployeesHomePage) :
             self.current_page = Page(frame = self.toplevel_frame, master = self)
 
             self.pages[Page.__name__] = self.current_page
@@ -55,10 +65,13 @@ class GUI(tk.Tk) :
         self.openPage(STARTING_PAGE)
 
     def openPage(self, page_name) :
-
         # Show a Frame for the Given Page.
         self.current_page = self.pages[page_name]
         self.current_page.tkraise()
+
+###################################
+############## Main ###############
+###################################
 
 if __name__ == '__main__' :
     gui = GUI()
