@@ -16,7 +16,7 @@ Create <b>Desktop Application</b> driven by <b>Python</b> to collect user data a
 
 We used the <b>Tkinter</b> standard interface to create the <b>GUI</b> for the user to interact with when running the application.
 
-The [(`app.py`)](app.py) <b>Python</b> file must be run to add, delete, or modify customers. This can be done as shown below.
+The [(`main.py`)](main.py) <b>Python</b> file must be run to add, delete, or modify customers. This can be done as shown below.
 
 <p align="center"><img src="Images/Demonstrations/Add_Customer.JPG" height="40%" width="40%" title="Adding Customer in Application." ></p>
 
@@ -67,3 +67,9 @@ table updates.
         </ul>
     </li>
 </ul>
+
+Relevant Links
+* [NASA Space Apps API](https://2021.spaceappschallenge.org/challenges/statements/you-are-my-sunshine/details)
+* [Multithreading Timers](https://www.bogotobogo.com/python/Multithread/python_multithreading_subclassing_Timer_Object.php)
+* [TKinter Timers](https://www.youtube.com/watch?v=ruohUTTo8Kw&t=2s&ab_channel=Codemy.com)
+* [Python EXE](https://www.youtube.com/watch?v=QWqxRchawZY&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&index=41&ab_channel=Codemy.com)

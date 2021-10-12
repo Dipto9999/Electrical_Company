@@ -1,9 +1,12 @@
-import time
-from datetime import date
+import datetime
 
-today = date.today()
+today = datetime.date.today()
 print(today)
 
+time_delta = datetime.timedelta(days = 7)
+
+print(today + time_delta)
+print(today - time_delta)
 
 
 # class Finances :
