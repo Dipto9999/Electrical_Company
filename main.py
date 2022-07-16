@@ -24,7 +24,6 @@ class GUI(tk.Tk) :
         # Can Initialize GUI Implicitly.
         super().__init__()
 
-        self.title('Electrical Company')
         self.iconbitmap('Images\Icons\Electricity.ico')
         self.config(bg = 'black')
 
