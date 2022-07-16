@@ -51,8 +51,6 @@ def create_table() :
     conn.commit()
     conn.close()
 
-
-
 # Query the Employees Table and Return a Specific Record.
 def show_single_record(key) :
 

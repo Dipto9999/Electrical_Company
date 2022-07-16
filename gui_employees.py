@@ -23,8 +23,6 @@ class EmployeesHomePage(DefaultHomePage) :
     def __init__(self, frame, master) :
         super(EmployeesHomePage, self).__init__(frame, master)
 
-        master.title('Employee Information')
-
         # Create the Table for the Data.
         db.create_table()
 

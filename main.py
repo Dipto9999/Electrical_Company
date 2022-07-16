@@ -13,6 +13,7 @@ from gui_customers import CustomersHomePage
 ########################################
 
 STARTING_PAGE = 'FinancesPage'
+STARTING_TITLE = 'Finances Information'
 
 ######################################
 ############## Classes ###############
@@ -36,9 +37,9 @@ class GUI(tk.Tk) :
         self.toplevel_menu.add_cascade(label = 'Pages', menu = self.pages_menu)
 
         # Call Functions to Change Pages.
-        self.pages_menu.add_command(label = 'Finances', command = lambda: self.openPage('FinancesHomePage'))
-        self.pages_menu.add_command(label = 'Employees', command = lambda: self.openPage('EmployeesHomePage'))
-        self.pages_menu.add_command(label = 'Customers', command = lambda: self.openPage('CustomersHomePage'))
+        self.pages_menu.add_command(label = 'Finances', command = lambda: self.openPage('FinancesPage', 'Finances Information'))
+        self.pages_menu.add_command(label = 'Employees', command = lambda: self.openPage('EmployeesHomePage', 'Employee Information'))
+        self.pages_menu.add_command(label = 'Customers', command = lambda: self.openPage('CustomersHomePage', 'Customers Information'))
 
         self.toplevel_frame = tk.Frame(self)
 
@@ -62,12 +63,14 @@ class GUI(tk.Tk) :
             # Must Use Grid System for Positioning Pages on Window.
             self.current_page.grid(row = 0, column = 0, sticky = 'nsew')
 
-        self.openPage(STARTING_PAGE)
+        self.openPage(STARTING_PAGE, STARTING_TITLE)
 
-    def openPage(self, page_name) :
+    def openPage(self, page_name, page_title) :
         # Show a Frame for the Given Page.
         self.current_page = self.pages[page_name]
         self.current_page.tkraise()
+
+        self.title(page_title)
 
 ###################################
 ############## Main ###############

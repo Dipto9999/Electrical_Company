@@ -9,9 +9,7 @@ class FinancesPage(tk.Frame) :
         # Initialize Frame.
         tk.Frame.__init__(self, frame)
 
-        master.title('Finances Information')
-        master.iconbitmap('Images\Icons\Electricity.ico')
-        master.config(bg = 'black')
+        self.config(bg = 'black')
 
         # Create the Table for the Data.
         db.create_table()

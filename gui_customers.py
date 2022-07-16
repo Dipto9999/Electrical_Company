@@ -16,8 +16,6 @@ class CustomersHomePage(DefaultHomePage) :
     def __init__(self, frame, master) :
         super(CustomersHomePage, self).__init__(frame, master)
 
-        master.title('Customers Information')
-
         # Create the Table for the Data.
         db.create_table()
 

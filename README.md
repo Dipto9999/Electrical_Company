@@ -58,7 +58,7 @@ table updates.
                         Additional Wages Calculated As:
                         <ul>
                             <li>Sales Department Adds New Customers and Receive Commision</li>
-                            <li>Corporate Department Employees receive $100 for every $1000 Net Income.</li>
+                            <li>Corporate Department Employees Receive $100 For Every $1000 Net Income.</li>
                             <li>Technical Department Workers Get a Bonus Every Quarter (4 Months) Based on Job Title.</li>
                         </ul>
                     </li>
@@ -70,6 +70,5 @@ table updates.
 
 Relevant Links
 * [NASA Space Apps API](https://2021.spaceappschallenge.org/challenges/statements/you-are-my-sunshine/details)
-* [Multithreading Timers](https://www.bogotobogo.com/python/Multithread/python_multithreading_subclassing_Timer_Object.php)
 * [TKinter Timers](https://www.youtube.com/watch?v=ruohUTTo8Kw&t=2s&ab_channel=Codemy.com)
 * [Python EXE](https://www.youtube.com/watch?v=QWqxRchawZY&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&index=41&ab_channel=Codemy.com)
