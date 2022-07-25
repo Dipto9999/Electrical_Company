@@ -79,7 +79,7 @@ class CustomersHomePage(DefaultHomePage) :
     ### Add Record ###
     ##################
 
-    def add_record (self) :
+    def add_record(self) :
         self.new_record = [
             self.first_name.get(),
             self.last_name.get(),

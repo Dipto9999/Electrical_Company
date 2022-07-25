@@ -127,7 +127,7 @@ class DefaultHomePage(DefaultPage) :
         self.editRecordbutton.grid(row = 2, column = 1, padx = 10, pady = 10)
 
 
-    def add_record (self) :
+    def add_record(self) :
          pass
 
     def view_records(self) :
