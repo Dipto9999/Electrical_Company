@@ -36,24 +36,24 @@ class CustomersHomePage(DefaultHomePage) :
         self.addRecordButton.config(text = 'Add Customer')
 
         # Position Widgets.
-        self.new_records_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
+        self.new_records_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5), sticky = tk.W)
 
-        self.first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5)
-        self.first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
+        self.first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5)
-        self.last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
+        self.last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
-        self.email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
+        self.email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.phone_number_label.grid(row = 4, column = 0, padx = 5, pady = 5)
-        self.phone_number.grid(row = 4, column = 1, padx = (0, 5), pady = 5)
+        self.phone_number_label.grid(row = 4, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.phone_number.grid(row = 4, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.subscription_plan_label.grid(row = 5, column = 0, padx = 5, pady = 5)
-        self.subscription_plan.grid(row = 5, column = 1, padx = (0, 5), pady = 5)
+        self.subscription_plan_label.grid(row = 5, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.subscription_plan.grid(row = 5, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.addRecordButton.grid(row = 6, column = 2, padx = 10, pady = 10)
+        self.addRecordButton.grid(row = 6, column = 2, padx = 10, pady = 10, sticky = tk.E)
 
         ##############################
         ### Existing Records Frame ###
@@ -173,24 +173,24 @@ class CustomersEditWindow(DefaultEditWindow) :
             bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
 
         # Position Widgets.
-        self.edit_record_label.grid(row = 0, column = 0, padx = 5, pady = 5)
+        self.edit_record_label.grid(row = 0, column = 0, padx = 5, pady = 5, sticky = tk.W)
 
-        self.first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5)
-        self.first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
+        self.first_name_label.grid(row = 1, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.first_name.grid(row = 1, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5)
-        self.last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5)
+        self.last_name_label.grid(row = 2, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.last_name.grid(row = 2, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5)
-        self.email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5)
+        self.email_address_label.grid(row = 3, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.email_address.grid(row = 3, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.phone_number_label.grid(row = 4, column = 0, padx = 5, pady = 5)
-        self.phone_number.grid(row = 4, column = 1, padx = (0, 5), pady = 5)
+        self.phone_number_label.grid(row = 4, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.phone_number.grid(row = 4, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.subscription_plan_label.grid(row = 5, column = 0, padx = 5, pady = 5)
-        self.subscription_plan.grid(row = 5, column = 1, padx = (0, 5), pady = 5)
+        self.subscription_plan_label.grid(row = 5, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.subscription_plan.grid(row = 5, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.submitButton.grid(row = 6, column = 2, padx = 5, pady = 5)
+        self.submitButton.grid(row = 6, column = 2, padx = 5, pady = 5, sticky = tk.E)
 
         # Default Text For Entry Widgets.
         self.first_name.insert(0, self.record_information[db.FIRST_NAME])

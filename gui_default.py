@@ -116,15 +116,15 @@ class DefaultHomePage(DefaultPage) :
             bg = self.button_bg, fg = 'white', font = self.button_font, borderwidth = 2, command = self.edit_record)
 
         # Position Widgets.
-        self.order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5))
-        self.order_information.grid(row = 0, column = 1, padx = (0, 5), pady = 5)
+        self.order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5), sticky = tk.W)
+        self.order_information.grid(row = 0, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.id_box_label.grid(row = 1, column = 0, padx = 5, pady = 5)
-        self.id_box.grid(row = 1, column = 1, padx = (0, 5), pady = 5)
+        self.id_box_label.grid(row = 1, column = 0, padx = 5, pady = 5, sticky = tk.W)
+        self.id_box.grid(row = 1, column = 1, padx = (0, 5), pady = 5, sticky = tk.W)
 
-        self.queryButton.grid(row = 1, column = 2, padx = 5, pady = 5)
-        self.deleteRecordbutton.grid(row = 2, column = 0, padx = 10, pady = 10)
-        self.editRecordbutton.grid(row = 2, column = 1, padx = 10, pady = 10)
+        self.queryButton.grid(row = 1, column = 2, padx = 5, pady = 5, sticky = tk.E)
+        self.deleteRecordbutton.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = tk.E)
+        self.editRecordbutton.grid(row = 2, column = 1, padx = 10, pady = 10, sticky = tk.E)
 
 
     def add_record(self) :
