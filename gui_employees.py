@@ -136,11 +136,7 @@ class EmployeesHomePage(DefaultHomePage) :
     ####################
 
     def view_records(self) :
-        try :
-            self.view_records_window.destroy()
-        except Exception as WindowDoesNotExist :
-            pass
-        finally :
+        if not hasattr(self, "view_records_window") or not self.view_records_window.winfo_exists() :
             self.view_records_window = EmployeesRecordsWindow(self)
 
     ###################
