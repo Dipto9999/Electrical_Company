@@ -26,11 +26,11 @@ class CustomersHomePage(DefaultHomePage) :
         # Create and Configure Label Widgets.
         self.new_records_label.config(text = 'New Customer Information')
         self.subscription_plan_label = tk.Label(self.new_records_frame, text = 'Subscription Plan : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
 
         # Create Spinbox Entry Widget.
         self.subscription_plan = tk.Spinbox(self.new_records_frame, values = ('Basic', 'Premium'),
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Configure Button Widget.
         self.addRecordButton.config(text = 'Add Customer')

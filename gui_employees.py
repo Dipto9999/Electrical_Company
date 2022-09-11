@@ -35,21 +35,21 @@ class EmployeesHomePage(DefaultHomePage) :
         # Create and Configure Label Widgets.
         self.new_records_label.config(text = 'New Employee Information')
         self.department_label = tk.Label(self.new_records_frame, text = 'Department : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.job_title_label = tk.Label(self.new_records_frame, text = 'Job Title : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.monthly_wage_label = tk.Label(self.new_records_frame, text = 'Monthly Wage : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
 
         # Create Text Entry Widget.
         self.job_title = tk.Entry(self.new_records_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Create Spinbox Entry Widgets.
         self.department = tk.Spinbox(self.new_records_frame, values = self.department_options,
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.monthly_wage = tk.Spinbox(self.new_records_frame, values = tuple(range(MIN_WAGE, 1000250, 250)),
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Configure Button Widget.
         self.addRecordButton.config(text = 'Add Employee')
@@ -199,21 +199,21 @@ class EmployeesEditWindow(DefaultEditWindow) :
 
         # Create Label Widgets.
         self.department_label = tk.Label(self.edit_frame, text = 'Department : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.job_title_label = tk.Label(self.edit_frame, text = 'Job Title : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.monthly_wage_label = tk.Label(self.edit_frame, text = 'Monthly Wage : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
 
         # Create Text Entry Widget.
         self.job_title = tk.Entry(self.edit_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Create Spinbox Entry Widgets.
         self.department = tk.Spinbox(self.edit_frame, values = self.department_options,
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.monthly_wage = tk.Spinbox(self.edit_frame, values = tuple(range(MIN_WAGE, MAX_WAGE + 250, 250)),
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Position Widgets.
         self.edit_record_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5), sticky = tk.W)

@@ -24,10 +24,13 @@ class DefaultPage(tk.Frame) :
         self.button_bg = '#0D4BC5'
         self.button_font = Font(family = 'Arial', size = 12, weight = 'bold')
 
-        self.general_label_bg = '#09F90D'
-        self.general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'bold')
+        self.heading_label_bg = '#0076CE'
+        self.heading_label_font = Font(family = 'Ubuntu Mono', size = 12, weight = 'bold')
 
-        self.general_entry_bg = '#0DC5B5'
+        self.general_label_bg = '#0076CE'
+        self.general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
+
+        self.general_entry_bg = '#6699CC'
         self.general_entry_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
 
 class DefaultHomePage(DefaultPage) :
@@ -51,25 +54,25 @@ class DefaultHomePage(DefaultPage) :
 
         # Create Label Widgets.
         self.new_records_label = tk.Label(self.new_records_frame, text = 'New Records Information',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.heading_label_bg, fg = 'black', font = self.heading_label_font, borderwidth = 2, relief = 'solid', anchor = tk.E)
         self.first_name_label = tk.Label(self.new_records_frame, text = 'First Name : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.last_name_label = tk.Label(self.new_records_frame, text = 'Last Name : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.email_address_label = tk.Label(self.new_records_frame, text = 'Email Address : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid',  anchor = tk.E)
         self.phone_number_label = tk.Label(self.new_records_frame, text = 'Phone Number : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2,  anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid',  anchor = tk.E)
 
         # Create Text Entry Widgets.
         self.first_name = tk.Entry(self.new_records_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.last_name = tk.Entry(self.new_records_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.email_address = tk.Entry(self.new_records_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.phone_number = tk.Entry(self.new_records_frame, bg = self.general_entry_bg, fg = 'black',
-            font = self.general_entry_font, borderwidth = 2)
+            font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Create Button Widget.
         self.addRecordButton = tk.Button(self.new_records_frame, text = 'Add Record', bg = self.button_bg, fg = 'white',
@@ -97,23 +100,23 @@ class DefaultHomePage(DefaultPage) :
 
         # Create Label Widgets.
         self.order_information_label = tk.Label(self.existing_records_frame, text = 'Order By : ', bg = self.general_label_bg,
-            fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.id_box_label = tk.Label(self.existing_records_frame, text = 'Key ID : ', bg = self.general_label_bg, fg = 'black',
-            font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
 
         # Create Spinbox Entry Widgets.
         self.order_information = tk.Spinbox(self.existing_records_frame, values = self.column_labels_in_table,
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.id_box = tk.Spinbox(self.existing_records_frame, values = self.key_ids_in_table,
-            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            bg = self.general_entry_bg, fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Create Button Widgets.
         self.queryButton = tk.Button(self.existing_records_frame, text = 'Query', bg = self.button_bg, fg = 'white',
-            font = self.button_font, borderwidth = 2, command = self.view_records)
+            font = self.button_font, borderwidth = 2, relief = 'raised', command = self.view_records)
         self.deleteRecordbutton = tk.Button(self.existing_records_frame, text = 'Delete Record', bg = self.button_bg, fg = 'white',
-            font = self.button_font, borderwidth = 2, command = self.delete_record)
+            font = self.button_font, borderwidth = 2, relief = 'raised', command = self.delete_record)
         self.editRecordbutton = tk.Button(self.existing_records_frame, text = 'Change Information',
-            bg = self.button_bg, fg = 'white', font = self.button_font, borderwidth = 2, command = self.edit_record)
+            bg = self.button_bg, fg = 'white', font = self.button_font, borderwidth = 2, relief = 'raised', command = self.edit_record)
 
         # Position Widgets.
         self.order_information_label.grid(row = 0, column = 0, padx = 5, pady = (0, 5), sticky = tk.W)
@@ -125,7 +128,6 @@ class DefaultHomePage(DefaultPage) :
         self.queryButton.grid(row = 1, column = 2, padx = 5, pady = 5, sticky = tk.E)
         self.deleteRecordbutton.grid(row = 2, column = 0, padx = 10, pady = 10, sticky = tk.E)
         self.editRecordbutton.grid(row = 2, column = 1, padx = 10, pady = 10, sticky = tk.E)
-
 
     def add_record(self) :
          pass
@@ -155,10 +157,13 @@ class DefaultWindow(tk.Toplevel) :
         self.button_bg = '#0D4BC5'
         self.button_font = Font(family = 'Arial', size = 12, weight = 'bold')
 
-        self.general_label_bg = '#09F90D'
-        self.general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'bold')
+        self.heading_label_bg = '#0076CE'
+        self.heading_label_font = Font(family = 'Ubuntu Mono', size = 12, weight = 'bold')
 
-        self.general_entry_bg = '#0DC5B5'
+        self.general_label_bg = '#0076CE'
+        self.general_label_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
+
+        self.general_entry_bg = '#6699CC'
         self.general_entry_font = Font(family = 'Ubuntu Mono', size = 10, weight = 'normal')
 
 class DefaultEditWindow(DefaultWindow) :
@@ -175,29 +180,29 @@ class DefaultEditWindow(DefaultWindow) :
 
         # Create Label Widgets.
         self.edit_record_label = tk.Label(self.edit_frame, text = 'Update Information',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.heading_label_bg, fg = 'black', font = self.heading_label_font, borderwidth = 2, relief = 'solid', anchor = tk.E)
         self.first_name_label = tk.Label(self.edit_frame, text = 'First Name : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.last_name_label = tk.Label(self.edit_frame, text = 'Last Name : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.email_address_label = tk.Label(self.edit_frame, text = 'Email Address : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
         self.phone_number_label = tk.Label(self.edit_frame, text = 'Phone Number : ',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 2, anchor = tk.E)
+            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 1, relief = 'solid', anchor = tk.E)
 
         # Create Text Entry Widgets.
         self.first_name = tk.Entry(self.edit_frame, bg = self.general_entry_bg,
-            fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.last_name = tk.Entry(self.edit_frame, bg = self.general_entry_bg,
-            fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.email_address = tk.Entry(self.edit_frame, bg = self.general_entry_bg,
-            fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
         self.phone_number = tk.Entry(self.edit_frame, bg = self.general_entry_bg,
-            fg = 'black', font = self.general_entry_font, borderwidth = 2)
+            fg = 'black', font = self.general_entry_font, borderwidth = 2, relief = 'sunken')
 
         # Create Button Widget.
         self.submitButton = tk.Button(self.edit_frame, text = 'Submit Changes',
-            bg = self.button_bg, fg = 'white', font = self.button_font, borderwidth = 2, command = self.submit_changes)
+            bg = self.button_bg, fg = 'white', font = self.button_font, borderwidth = 2, relief = 'raised', command = self.submit_changes)
 
     def submit_changes(self) :
         pass
@@ -221,13 +226,15 @@ class DefaultRecordsWindow(DefaultWindow) :
 
         # Create and Position Text Label.
         self.records_data_label = tk.Label(self.db_records_frame, text = 'Records Data',
-            bg = self.general_label_bg, fg = 'black', font = self.general_label_font, borderwidth = 5, anchor = tk.E)
+            bg = self.heading_label_bg, fg = 'black', font = self.heading_label_font, borderwidth = 2, relief = 'solid', anchor = tk.E)
         self.records_data_label.pack(padx = 5, pady = 10)
 
         ### Treeview Style ###
 
         # Create a Treeview Style.
         self.treeview_style = ttk.Style()
+        self.treeview_style.theme_use('winnative')
+
         # Treeview Body Style.
         self.treeview_style.configure('display_style.Treeview',
             highlightthickness = 2, bd = 2, font = self.general_entry_font,
@@ -240,7 +247,7 @@ class DefaultRecordsWindow(DefaultWindow) :
             background = 'lightgreen', foreground = 'black', rowheight = 25, fieldbackground = 'silver'
         )
         # Change Color of Selected Row.
-        self.treeview_style.map('display_style.Treeview', background = [('selected', 'white')])
+        self.treeview_style.map('display_style.Treeview', background = [('selected', 'blue')])
 
         ### Treeview ###
 
