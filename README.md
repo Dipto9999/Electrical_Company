@@ -68,7 +68,7 @@ table updates.
     </li>
 </ul>
 
-Relevant Links
+Interesting Links
 * [NASA Space Apps API](https://2021.spaceappschallenge.org/challenges/statements/you-are-my-sunshine/details)
 * [TKinter Timers](https://www.youtube.com/watch?v=ruohUTTo8Kw&t=2s&ab_channel=Codemy.com)
 * [Python EXE](https://www.youtube.com/watch?v=QWqxRchawZY&list=PLCC34OHNcOtoC6GglhF3ncJ5rLwQrLGnV&index=41&ab_channel=Codemy.com)
